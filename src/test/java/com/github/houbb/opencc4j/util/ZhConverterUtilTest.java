@@ -188,4 +188,28 @@ public class ZhConverterUtilTest {
         Assert.assertEquals("[發, 髮]", ZhConverterUtil.toTraditional('发').toString());
     }
 
+    @Test
+    public void testToSimple() {
+        String s1 = "面包掉在了地上变髒了";
+        printCompare(ZhConverterUtil.toSimple(s1), "面包掉在了地上变脏了");
+        String s2 = "撑着油纸伞，独自彷徨在悠长，悠长又寂寥的雨巷，我希望飘过一个丁香一样的結著愁怨的姑娘。";
+        printCompare(ZhConverterUtil.toSimple(s2), "撑着油纸伞，独自彷徨在悠长，悠长又寂寥的雨巷，我希望飘过一个丁香一样的结着愁怨的姑娘。");
+        String s3 = "習近平在中央政治局第二十五次集體學習時強調 全面加強智慧財産權保護工作 激發創新活力推動構建新發展格局";
+        String s3_target = "习近平在中央政治局第二十五次集体学习时强调 全面加强知识产权保护工作 激发创新活力推动构建新发展格局";
+        printCompare(ZhConverterUtil.toSimple(s3), s3_target);
+    }
+
+    private void printCompare(String source, String target) {
+        System.out.println("source: " + source);
+        System.out.println("target: " + target);
+        System.out.print("result: ");
+        for (int i = 0; i< source.length(); i++) {
+            if (source.charAt(i) != target.charAt(i)) {
+                System.out.println(source.charAt(i) + " is different from " + target.charAt(i) + " at " + i);
+                return;
+            }
+        }
+        System.out.println("对比字符串相同");
+    }
+
 }

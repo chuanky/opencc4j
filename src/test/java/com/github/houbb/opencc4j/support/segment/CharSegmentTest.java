@@ -18,6 +18,7 @@ public class CharSegmentTest {
     public void segTest() {
         final String original = "爱我中华";
         List<String> stringList = Instances.singleton(CharSegment.class).seg(original);
+        System.out.println(stringList);
         Assert.assertEquals(4, stringList.size());
     }
 

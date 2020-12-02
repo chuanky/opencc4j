@@ -15,6 +15,9 @@ public class STPhraseDataTest {
     @Test
     public void singletonTest() {
         DataInfo dataInfo = Instances.singleton(STPhraseData.class).data();
+        for (String key : dataInfo.getDataMap().keySet()) {
+            System.out.println(key + " : " + dataInfo.getDataMap().get(key));
+        }
         Assert.assertEquals(48933, dataInfo.getDataMap().size());
     }
 

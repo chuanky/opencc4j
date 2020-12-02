@@ -18,6 +18,7 @@ public class HuaBanSegmentTest {
     public void segTest() {
         final String original = "爱我中华";
         List<String> stringList = Instances.singleton(HuaBanSegment.class).seg(original);
+        System.out.println(stringList);
         Assert.assertEquals(3, stringList.size());
 
         //[爱, 我, 中华文化]

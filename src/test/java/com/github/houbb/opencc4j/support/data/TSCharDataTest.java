@@ -15,6 +15,9 @@ public class TSCharDataTest {
     @Test
     public void singletonTest() {
         DataInfo dataInfo = Instances.singleton(TSCharData.class).data();
+        for (String key : dataInfo.getDataMap().keySet()) {
+            System.out.println(key + " : " + dataInfo.getDataMap().get(key));
+        }
         System.out.println(dataInfo.getDataMap().size());
 //        Assert.assertEquals(4189, dataInfo.getDataMap().size());
     }

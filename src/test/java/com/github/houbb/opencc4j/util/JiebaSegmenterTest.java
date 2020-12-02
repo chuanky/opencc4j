@@ -3,6 +3,7 @@ package com.github.houbb.opencc4j.util;
 import com.huaban.analysis.jieba.JiebaSegmenter;
 import org.junit.Test;
 
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -40,13 +41,20 @@ public class JiebaSegmenterTest {
 
     @Test
     public void singleThreadTest() {
+        String origin = "特朗普是美国总统";
         String[] sentences =
-                new String[]{"这是一个伸手不见五指的黑夜。我叫孙悟空，我爱北京，我爱Python和C++。",
+                new String[]{origin,
+                        "这是一个伸手不见五指的黑夜。我叫孙悟空，我爱北京，我爱Python和C++。",
                         "我不喜欢日本和服。",
                         "雷猴回归人间。",
                         "工信处女干事每月经过下属科室都要亲口交代24口交换机等技术性器件的安装工作",
                         "结果婚的和尚未结过婚的"};
         final JiebaSegmenter segmenter = new JiebaSegmenter();
+        String result = ZhConverterUtil.toTraditional(origin);
+        for (String sentence : sentences) {
+            System.out.println(segmenter.process(sentence, JiebaSegmenter.SegMode.INDEX).toString());
+        }
+        sentences[0] = result;
         for (String sentence : sentences) {
             System.out.println(segmenter.process(sentence, JiebaSegmenter.SegMode.INDEX).toString());
         }

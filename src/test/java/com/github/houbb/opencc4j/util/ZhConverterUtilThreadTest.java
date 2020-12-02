@@ -25,24 +25,27 @@ public class ZhConverterUtilThreadTest {
     @Ignore
     public void toTraditionalTest() throws Exception {
         ExecutorService ts = Executors.newFixedThreadPool(8);
-        while (true) {
+        int i = 0;
+        while (i < 10) {
             ts.execute(new Thread() {
                 @Override
                 public void run() {
                     final String randomStr = buildRandomString();
                     String result = ZhConverterUtil.toTraditional(randomStr);
-                    System.out.println(result);
+                    System.out.println(Thread.currentThread().getName() + ": " + result);
                 }
             });
+            i++;
         }
+        Thread.sleep(2000);
     }
 
     private static synchronized String buildRandomString() {
         final String row = "壬戌之秋，七月既望，苏子与客泛舟游于赤壁之下。清风徐来，水波不兴。举酒属客，诵明月之诗，歌窈窕之章。少焉，月出于东山之上，徘徊于斗牛之间。白露横江，水光接天。纵一苇之所如，凌万顷之茫然。浩浩乎如冯虚御风，而不知其所止；飘飘乎如遗世独立，羽化而登仙。";
-        int lenth = 20;
+        int length = 20;
         StringBuilder stringBuilder = new StringBuilder();
         Random random = new Random();
-        for(int i = 0; i < lenth; i++) {
+        for(int i = 0; i < length; i++) {
             stringBuilder.append(row.charAt(random.nextInt(row.length())));
         }
         return stringBuilder.toString();

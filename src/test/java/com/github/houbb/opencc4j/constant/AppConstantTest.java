@@ -15,6 +15,7 @@ public class AppConstantTest {
     public void constantTest() {
         Assert.assertEquals("UTF-8", AppConstant.DEFAULT_CHARSET);
         Assert.assertEquals("\uD86D\uDDF5", AppConstant.EMPTY_RESULT);
+        System.out.println(AppConstant.EMPTY_RESULT);
     }
 
 }
